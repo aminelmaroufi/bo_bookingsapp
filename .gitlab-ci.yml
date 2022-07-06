@@ -1,11 +1,11 @@
 image: alpine:latest
 
-before_script:
-  - apk add ruby-dev
-    - apk add ruby-rdoc
-    - apk add git
-    - apk add curl
-    - gem install dpl
+# before_script:
+#   - apk add ruby-dev
+#   - apk add ruby-rdoc
+#   - apk add git
+#   - apk add curl
+#   - gem install dpl
 
 stages:
   - production
@@ -14,6 +14,11 @@ production:
   stage: production
   image: ruby:latest
   script:
+    - apk add ruby-dev
+    - apk add ruby-rdoc
+    - apk add git
+    - apk add curl
+    - gem install dpl
     - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
   only:
     - master

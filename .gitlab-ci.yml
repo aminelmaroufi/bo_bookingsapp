@@ -10,7 +10,7 @@ stages:
 
 production:
   stage: production
-  image: heroku:latest
+  image: ruby:latest
   script:
     - sudo curl https://cli-assets.heroku.com/install.sh | sh
     - HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:login

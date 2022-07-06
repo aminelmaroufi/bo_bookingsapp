@@ -12,7 +12,7 @@ stages:
 
 production:
   stage: production
-  image: ruby:latest
+  # image: ruby:latest
   script:
     - apk add ruby-dev
     - apk add ruby-rdoc

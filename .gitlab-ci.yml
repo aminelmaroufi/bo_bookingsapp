@@ -10,9 +10,11 @@ stages:
 
 production:
   stage: production
-  image: ruby:latest
+  image: heroku:latest
   script:
-    - gem install dpl
-    - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
+    - sudo curl https://cli-assets.heroku.com/install.sh | sh
+    - HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:login
+    - HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:push -a ${HEROKU_APP_NAME} web
+    - HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:release -a ${HEROKU_APP_NAME} web
   only:
     - master

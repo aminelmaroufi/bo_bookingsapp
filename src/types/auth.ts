@@ -20,8 +20,8 @@ export interface FetchRequest {
 }
 
 export interface FetchRequestSuccess {
-  fetching: false;
-  success: true;
+  fetching: boolean;
+  success: boolean;
 }
 
 export interface FetchRequestFailure {
@@ -32,7 +32,7 @@ export interface FetchRequestFailure {
 
 export interface FetchRequestSuccessOperation {
   fetching: boolean;
-  error: boolean;
+  success: boolean;
   message: string;
 }
 
@@ -47,8 +47,7 @@ export interface loginSuccess {
 }
 
 export interface logoutSuccess {
-  user: IUser;
-  isLoggedIn: boolean;
+  message: string;
 }
 
 export interface resetPwdSuccess {
@@ -87,7 +86,6 @@ export type loginSuccessPayload = {
 
 export type logoutSuccessPayload = {
   type: actionTypes.LOGOUT_SUCCESS;
-  payload: logoutSuccess;
 };
 
 export type resetPwdSuccessPayload = {
@@ -95,7 +93,13 @@ export type resetPwdSuccessPayload = {
   payload: resetPwdSuccess;
 };
 
+export type notActionPayload = {
+  type: "";
+  payload: null;
+};
+
 export type authActions =
+  | notActionPayload
   | FetchRequestPayload
   | FetchRequestSuccessPayload
   | FetchRequestFailurePayload

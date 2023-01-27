@@ -1,4 +1,4 @@
-import actionTypes from "../../utils/actionTypes";
+import actionTypes from "src/utils/actionTypes";
 
 export const checkUser = () => ({
   type: actionTypes.CHECK_USER_REQUEST,

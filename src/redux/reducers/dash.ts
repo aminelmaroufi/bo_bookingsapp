@@ -39,7 +39,8 @@ export default function reducer(state = initialState, action: dashActions) {
         totalAmount: action.payload.totalAmount,
         chartData: action.payload.chartData,
       };
-
+    case ActionTypes.LOGOUT_SUCCESS:
+      return initialState;
     default:
       return state;
   }

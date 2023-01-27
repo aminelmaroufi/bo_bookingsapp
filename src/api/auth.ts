@@ -1,5 +1,14 @@
 import adapter from "../utils/adapter";
 
+// export interface IData {
+//   ok: boolean;
+//   result: object;
+// }
+
+// export interface IResult {
+//   data: IData;
+// }
+
 export const checkUser = () => {
   return adapter.get("/me").catch((err) => {
     let error: any;
@@ -25,8 +34,8 @@ export const login = (email: string, password: string) => {
       error.message = err;
     } else {
       error = err.response.data.message
-        ? err.response.data
-        : err.response.data.result;
+        ? err.response.data.result.message
+        : err.response.data.result.message;
     }
     return Promise.reject(error);
   });

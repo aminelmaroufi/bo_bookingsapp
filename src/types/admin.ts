@@ -32,7 +32,12 @@ export type deleteModeratorSuccessPayload = {
   payload: deleteModeratorSuccess;
 };
 
+export type notActionPayload = {
+  type: "";
+};
+
 export type adminActions =
+  | notActionPayload
   | getModeratorsSuccessPayload
   | createModeratorSuccessPayload
   | deleteModeratorSuccessPayload;

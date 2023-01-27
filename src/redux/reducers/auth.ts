@@ -55,16 +55,7 @@ export default function reducer(state = initialState, action: authActions) {
         isLoggedIn: true,
       };
     case ActionTypes.LOGOUT_SUCCESS:
-      return {
-        ...state,
-        fetching: false,
-        isLoggedIn: false,
-        message: "",
-        error: false,
-        user: emptyUser,
-        success: false,
-        reset_pwd_success: false,
-      };
+      return initialState;
     case ActionTypes.RESET_PASSWORD_SUCCESS:
       return {
         ...state,

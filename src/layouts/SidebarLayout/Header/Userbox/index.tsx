@@ -78,7 +78,12 @@ function HeaderUserbox() {
 
   return (
     <>
-      <UserBoxButton color="secondary" ref={ref} onClick={handleOpen}>
+      <UserBoxButton
+        data-cy="user-box"
+        color="secondary"
+        ref={ref}
+        onClick={handleOpen}
+      >
         <Avatar variant="rounded" alt={user.fullname} />
         <Hidden mdDown>
           <UserBoxText>
@@ -93,6 +98,7 @@ function HeaderUserbox() {
         </Hidden>
       </UserBoxButton>
       <Popover
+        data-cy="popover"
         anchorEl={ref.current}
         onClose={handleClose}
         open={isOpen}
@@ -132,6 +138,7 @@ function HeaderUserbox() {
         <Divider />
         <Box sx={{ m: 1 }}>
           <Button
+            data-cy="logout-btn"
             color="primary"
             fullWidth
             onClick={() => dispatch(logoutRequest())}

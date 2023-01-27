@@ -50,4 +50,16 @@ export type getStatisticsSuccessPayload = {
   payload: getStatisticsSuccess;
 };
 
-export type dashActions = getStatisticsSuccessPayload;
+export type logoutSuccessPayload = {
+  type: actionTypes.LOGOUT_SUCCESS;
+};
+
+export type notActionPayload = {
+  type: "";
+  payload: null;
+};
+
+export type dashActions =
+  | notActionPayload
+  | logoutSuccessPayload
+  | getStatisticsSuccessPayload;

@@ -4,7 +4,7 @@ import ActionTypes from "../../utils/actionTypes";
 import { checkUser, login, logout, forgotPwd, resetPwd } from "../../api";
 import { AxiosResponse } from "axios";
 
-function* check_user_request() {
+export function* check_user_request() {
   try {
     yield put({ type: ActionTypes.API_CALL_REQUEST });
     let response: AxiosResponse = yield call(checkUser);
@@ -47,7 +47,7 @@ function* check_user_request() {
   }
 }
 
-function* login_request(action: any) {
+export function* login_request(action: any) {
   try {
     yield put({ type: ActionTypes.API_CALL_REQUEST });
     let response: AxiosResponse = yield call(
@@ -88,7 +88,7 @@ function* login_request(action: any) {
   }
 }
 
-function* logout_request() {
+export function* logout_request() {
   try {
     yield put({ type: ActionTypes.API_CALL_REQUEST });
     let response: AxiosResponse = yield call(logout);
@@ -101,9 +101,6 @@ function* logout_request() {
         }),
         put({
           type: ActionTypes.LOGOUT_SUCCESS,
-          payload: {
-            message: data.result.message,
-          },
         }),
         put(push("/login")),
       ]);
@@ -125,7 +122,7 @@ function* logout_request() {
   }
 }
 
-function* forgot_password_request(action) {
+export function* forgot_password_request(action) {
   try {
     yield put({ type: ActionTypes.API_CALL_REQUEST });
     let response: AxiosResponse = yield call(forgotPwd, action.email);
@@ -158,7 +155,7 @@ function* forgot_password_request(action) {
   }
 }
 
-function* reset_password_request(action) {
+export function* reset_password_request(action) {
   try {
     yield put({ type: ActionTypes.API_CALL_REQUEST });
     let response: AxiosResponse = yield call(
@@ -201,8 +198,8 @@ function* reset_password_request(action) {
 
 export default function* watchAuthRequest() {
   yield all([
-    takeLatest(ActionTypes.LOGIN_REQUEST, login_request),
     takeLatest(ActionTypes.CHECK_USER_REQUEST, check_user_request),
+    takeLatest(ActionTypes.LOGIN_REQUEST, login_request),
     takeLatest(ActionTypes.LOGOUT, logout_request),
     takeLatest(ActionTypes.FORGOT_PASSWORD_REQUEST, forgot_password_request),
     takeLatest(ActionTypes.RESET_PASSWORD_REQUEST, reset_password_request),

@@ -4,7 +4,7 @@ import ActionTypes from "../../utils/actionTypes";
 import { getStatistics } from "../../api";
 import { AxiosResponse } from "axios";
 
-function* get_statistics_request() {
+export function* get_statistics_request() {
   try {
     yield put({ type: ActionTypes.API_CALL_REQUEST });
     let response: AxiosResponse = yield call(getStatistics);

@@ -147,8 +147,9 @@ const Login = (props: any) => {
           </Grid>
           <Grid item lg={12} md={7} sm={7} xs={12}>
             <ContentBox>
-              <ValidatorForm onSubmit={login}>
+              <ValidatorForm data-testid="login-form" onSubmit={login}>
                 <TextValidator
+                  id="email"
                   sx={{ mb: 3, width: "100%" }}
                   variant="outlined"
                   size="small"
@@ -164,6 +165,7 @@ const Login = (props: any) => {
                   ]}
                 />
                 <TextValidator
+                  id="password"
                   sx={{ mb: "12px", width: "100%" }}
                   label="Password"
                   variant="outlined"
@@ -195,6 +197,7 @@ const Login = (props: any) => {
                       color="primary"
                       disabled={!isValid}
                       type="submit"
+                      onClick={login}
                     >
                       Sign in
                     </Button>

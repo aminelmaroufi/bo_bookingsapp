@@ -56,7 +56,11 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --verbose",
+    "cypress": "./node_modules/.bin/cypress open",
+    "cypress-local": "concurrently \"npm run start\" \"npm run cypress-open\"",
+    "cypress-run": "./node_modules/.bin/cypress run",
+    "cypress-ci": "start-server-and-test \"npm run start\" http://localhost:3000 \"npm run cypress-run\"",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -98,6 +102,7 @@
     "@types/react-toastify": "^4.1.0",
     "@types/react-transition-group": "^4.4.4",
     "@types/recharts": "^1.8.23",
-    "@types/redux-saga": "^0.10.5"
+    "@types/redux-saga": "^0.10.5",
+    "cypress": "^12.3.0"
   }
 }

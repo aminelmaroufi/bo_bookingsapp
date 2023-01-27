@@ -13,7 +13,7 @@ const errorInterceptor = (axiosInstance) => {
       error = JSON.stringify(error);
       error = JSON.parse(error);
 
-      if (error.status === 401) {
+      if (error && error.status === 401) {
         const currPath = browserHistory.location.pathname;
 
         if (
@@ -27,7 +27,7 @@ const errorInterceptor = (axiosInstance) => {
         else return browserHistory.push("/login");
         //   //Unauthorized
         //   //redirect to Login
-      } else if (error.response.status === 500) {
+      } else if (error && error.response.status === 500) {
         return browserHistory.push("/500");
         //Unauthorized
         //redirect to 500 page

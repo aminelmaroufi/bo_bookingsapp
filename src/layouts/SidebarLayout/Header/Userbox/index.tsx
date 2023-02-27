@@ -87,8 +87,10 @@ function HeaderUserbox() {
         <Avatar variant="rounded" alt={user.fullname} />
         <Hidden mdDown>
           <UserBoxText>
-            <UserBoxLabel variant="body1">{user.fullname}</UserBoxLabel>
-            <UserBoxDescription variant="body2">
+            <UserBoxLabel variant="body1" data-cy="user-fullname">
+              {user.fullname}
+            </UserBoxLabel>
+            <UserBoxDescription variant="body2" data-cy="user-email">
               {user.email}
             </UserBoxDescription>
           </UserBoxText>

@@ -269,6 +269,7 @@ const FormDialog = (props) => {
       fullWidth={true}
       maxWidth={"sm"}
       onClose={() => onCloseDialog()}
+      data-testid="hotel-modal"
     >
       <DialogTitle style={{ fontSize: 25, fontWeight: "bold" }}>
         Create new hotel
@@ -279,10 +280,12 @@ const FormDialog = (props) => {
         </DialogContentText>
         <ValidatorForm onSubmit={submit}>
           <TextValidator
+            data-testid="hotel-form-name"
             autoFocus
             sx={{
               mb: !nameIsValid || !nameValueIsValid ? 0 : 3,
               width: "100%",
+              marginBottom: 2,
             }}
             variant="outlined"
             size="small"
@@ -320,11 +323,11 @@ const FormDialog = (props) => {
               }}
             />
 
-            <label htmlFor="contained-button-file">
+            <label htmlFor="hotel-form-mainpic">
               <Input
+                id="hotel-form-mainpic"
                 ref={(ref) => (mainPicInput = ref)}
                 accept="image/*"
-                id="contained-button-file"
                 multiple
                 type="file"
                 onChange={(event) => handleChange("main_picture", event)}
@@ -390,11 +393,11 @@ const FormDialog = (props) => {
               }}
             />
 
-            <label htmlFor="contained-button-file2">
+            <label htmlFor="hotel-form-secpic">
               <Input
+                id="hotel-form-secpic"
                 ref={(ref) => (secondPicFile = ref)}
                 accept="image/*"
-                id="contained-button-file2"
                 multiple
                 type="file"
                 onChange={(event) => handleChange("second_picture", event)}
@@ -463,6 +466,7 @@ const FormDialog = (props) => {
           /> */}
 
           <TextValidator
+            data-testid="hotel-form-type"
             sx={{
               mb: typeIsValid === false || typeValueIsValid === false ? 0 : 3,
               width: "100%",
@@ -500,6 +504,7 @@ const FormDialog = (props) => {
           )}
 
           <TextValidator
+            data-testid="hotel-form-city"
             sx={{
               mb: cityIsValid === false || cityValueIsValid === false ? 0 : 3,
               width: "100%",
@@ -526,6 +531,7 @@ const FormDialog = (props) => {
           )}
 
           <Rating
+            data-testid="hotel-form-rating"
             name="read-only"
             value={hotel.rating}
             style={{ marginBottom: 20, marginLeft: 10 }}
@@ -538,6 +544,7 @@ const FormDialog = (props) => {
             </Typography>
           )}
           <TextValidator
+            data-testid="hotel-form-shortaddr"
             sx={{
               mb:
                 shortAddressIsValid === false ||
@@ -567,6 +574,7 @@ const FormDialog = (props) => {
             </Typography>
           )}
           <TextValidator
+            data-testid="hotel-form-address"
             sx={{
               mb:
                 addressIsValid === false || addressValueIsValid === false
@@ -595,6 +603,7 @@ const FormDialog = (props) => {
             </Typography>
           )}
           <TextValidator
+            data-testid="hotel-form-location"
             sx={{
               mb:
                 locationIsValid === false || locationValueIsValid === false
@@ -631,6 +640,7 @@ const FormDialog = (props) => {
           color="primary"
           disabled={!isValid}
           onClick={submit}
+          data-testid="save-hotel-btn"
         >
           Save
         </Button>

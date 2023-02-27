@@ -1,0 +1,10 @@
+{
+  "_id": "620504142074e1dfcd806d89",
+  "firstname": "Admin",
+  "lasttname": "Admin",
+  "fullname": "Admin ADMIN",
+  "email": "admin@admin.com",
+  "cards": [],
+  "roles": ["admin"],
+  "password": "Azerty123@@"
+}

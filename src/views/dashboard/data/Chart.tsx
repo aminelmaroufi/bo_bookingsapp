@@ -9,7 +9,6 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import Title from "../Title";
-import { getYear } from "date-fns";
 
 // Generate Sales Data
 function createData(time: string, amount?: number) {

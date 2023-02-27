@@ -15,6 +15,7 @@ const ConfirmationDeleteDialog = (props) => {
 
   return (
     <Dialog
+      data-testid="remove-hotel-modal"
       open={props.open}
       fullWidth={true}
       maxWidth={"sm"}
@@ -30,7 +31,12 @@ const ConfirmationDeleteDialog = (props) => {
         <Button autoFocus onClick={props.handleCloseDialog}>
           Cancel
         </Button>
-        <Button variant="contained" color="error" onClick={props.deleteHotel}>
+        <Button
+          data-testid="delete-hotel-btn"
+          variant="contained"
+          color="error"
+          onClick={props.deleteHotel}
+        >
           DELETE
         </Button>
       </DialogActions>

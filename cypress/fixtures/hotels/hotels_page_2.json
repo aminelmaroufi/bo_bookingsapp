@@ -1,0 +1,151 @@
+{
+  "ok": true,
+  "result": {
+    "hotels": [
+      {
+        "rating": 4,
+        "rooms": [
+          {
+            "price": 189,
+            "_id": "61850bf0872dbbc3b8797b5b",
+            "title": "Classic Double Room",
+            "advantage": "Breakfast availible, pay at the property.",
+            "room_picture": "61850bf0872dbbc3b8797b59",
+            "created_at": "2021-11-05T10:48:16.082Z",
+            "updated_at": "2021-11-05T10:48:16.082Z"
+          },
+          {
+            "price": 196,
+            "_id": "61850c1c872dbbc3b8797b5e",
+            "title": "Classic Double Room",
+            "advantage": "Very good breakfast included in the room rate.",
+            "room_picture": "61850c1c872dbbc3b8797b5c",
+            "created_at": "2021-11-05T10:49:00.380Z",
+            "updated_at": "2021-11-05T10:49:00.380Z"
+          }
+        ],
+        "_id": "61850ba8872dbbc3b8797b58",
+        "name": "Hôtel Le Walt",
+        "short_address": "7th arr.",
+        "address": "29, Avenue De Tourville, 7th arr., Paris, 75007 France",
+        "location": "50 m from Metro / tube station (Ecole militaire)",
+        "type": "Classic Double Room",
+        "city": "Paris",
+        "country": "France",
+        "main_picture": "61850ba8872dbbc3b8797b54",
+        "second_picture": "61850ba8872dbbc3b8797b55",
+        "created_at": "2021-11-05T10:47:04.465Z",
+        "updated_at": "2021-11-05T10:49:00.382Z"
+      },
+      {
+        "rating": 4,
+        "rooms": [
+          {
+            "price": 189,
+            "_id": "61850b08872dbbc3b8797b50",
+            "title": "Double Room Baronne - Eiffel Tower Side View",
+            "advantage": "Breakfast availible, pay at the property.",
+            "room_picture": "61850b08872dbbc3b8797b4e",
+            "created_at": "2021-11-05T10:44:24.859Z",
+            "updated_at": "2021-11-05T10:44:24.859Z"
+          },
+          {
+            "price": 233,
+            "_id": "61850b35872dbbc3b8797b53",
+            "title": "Double Room Baronne - Eiffel Tower Side View",
+            "advantage": "Very good breakfast included in the room rate.",
+            "room_picture": "61850b35872dbbc3b8797b51",
+            "created_at": "2021-11-05T10:45:09.695Z",
+            "updated_at": "2021-11-05T10:45:09.695Z"
+          }
+        ],
+        "_id": "61850ad3872dbbc3b8797b4d",
+        "name": "Hôtel La Comtesse",
+        "short_address": "7th arr. 3,3 km from center",
+        "address": "29, Avenue De Tourville, 7th arr., Paris, 75007 France",
+        "location": "150 m from Metro / tube station (Ecole militaire)",
+        "type": "Double Room Baronne - Eiffel Tower Side View",
+        "city": "Paris",
+        "country": "France",
+        "main_picture": "61850ad3872dbbc3b8797b49",
+        "second_picture": "61850ad3872dbbc3b8797b4a",
+        "created_at": "2021-11-05T10:43:31.543Z",
+        "updated_at": "2021-11-05T10:45:09.697Z"
+      },
+      {
+        "rating": 4,
+        "rooms": [
+          {
+            "price": 220,
+            "_id": "61850a57872dbbc3b8797b45",
+            "title": "Single Room",
+            "advantage": "Breakfast availible, pay at the property.",
+            "room_picture": "61850a57872dbbc3b8797b43",
+            "created_at": "2021-11-05T10:41:27.062Z",
+            "updated_at": "2021-11-05T10:41:27.062Z"
+          },
+          {
+            "price": 230,
+            "_id": "61850a79872dbbc3b8797b48",
+            "title": "Single Room",
+            "advantage": "Good breakfast included in the room rate.",
+            "room_picture": "61850a79872dbbc3b8797b46",
+            "created_at": "2021-11-05T10:42:01.135Z",
+            "updated_at": "2021-11-05T10:42:01.135Z"
+          }
+        ],
+        "_id": "61850a25872dbbc3b8797b42",
+        "name": "Le Temple De Jeanne",
+        "short_address": "4th arr. 700 m from center",
+        "address": "125 Rue Saint-Antoine, 4th arr., Paris, 75004 France",
+        "location": "50 m from Metro / tube station (Saint-Paul)",
+        "type": "Single Room",
+        "city": "Paris",
+        "country": "France",
+        "main_picture": "61850a25872dbbc3b8797b3e",
+        "second_picture": "61850a25872dbbc3b8797b3f",
+        "created_at": "2021-11-05T10:40:37.731Z",
+        "updated_at": "2021-11-05T10:42:01.137Z"
+      },
+      {
+        "rating": 4,
+        "rooms": [
+          {
+            "price": 215,
+            "_id": "6185097e872dbbc3b8797b3a",
+            "title": "Super Double or Twin room",
+            "advantage": "Breakfast availible, pay at the property.",
+            "room_picture": "6185097e872dbbc3b8797b38",
+            "created_at": "2021-11-05T10:37:50.703Z",
+            "updated_at": "2021-11-05T10:37:50.703Z"
+          },
+          {
+            "price": 240,
+            "_id": "618509cd872dbbc3b8797b3d",
+            "title": "Super Double or Twin room",
+            "advantage": "Fabulous breakfast included in the room rate.",
+            "room_picture": "618509cd872dbbc3b8797b3b",
+            "created_at": "2021-11-05T10:39:09.603Z",
+            "updated_at": "2021-11-05T10:39:09.603Z"
+          }
+        ],
+        "_id": "61850966872dbbc3b8797b37",
+        "name": "Hotel Villa Saxe eiffel",
+        "short_address": "7th arr. 3.2 km from center",
+        "address": "9 Villa de Saxe, 7th arr., Paris, 75007 France",
+        "location": "350 m from Metro / Tube station (Ségur)",
+        "type": "Classic Double Room",
+        "city": "Paris",
+        "country": "France",
+        "main_picture": "61850966872dbbc3b8797b33",
+        "second_picture": "61850966872dbbc3b8797b34",
+        "created_at": "2021-11-05T10:37:26.431Z",
+        "updated_at": "2021-11-05T10:39:09.604Z"
+      }
+    ],
+    "total": 14,
+    "page": 2,
+    "pages": 2,
+    "limit": 10
+  }
+}

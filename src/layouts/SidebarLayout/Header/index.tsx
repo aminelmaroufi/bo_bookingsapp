@@ -34,7 +34,7 @@ function Header() {
   const { sidebarToggle, toggleSidebar } = useContext(SidebarContext);
 
   return (
-    <HeaderWrapper display="flex" alignItems="center">
+    <HeaderWrapper display="flex" alignItems="center" data-cy="dash-header">
       <Box display="flex" alignItems="center">
         <Hidden lgUp>
           <Logo />
@@ -44,7 +44,7 @@ function Header() {
         {/* <HeaderButtons /> */}
         <HeaderUserbox />
         <Hidden lgUp>
-          <Tooltip arrow title="Toggle Menu">
+          <Tooltip arrow title="Toggle Menu" data-cy="dash-tooltip">
             <IconButton color="primary" onClick={toggleSidebar}>
               {!sidebarToggle ? <MenuTwoToneIcon /> : <CloseTwoToneIcon />}
             </IconButton>

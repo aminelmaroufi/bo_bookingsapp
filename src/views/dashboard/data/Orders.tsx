@@ -26,7 +26,7 @@ const Orders = (props) => {
             <TableCell>Create at</TableCell>
           </TableRow>
         </TableHead>
-        <TableBody>
+        <TableBody cy-data="last-orders-table">
           {props.orders.map((row) => (
             <TableRow key={row._id}>
               <TableCell>
@@ -51,7 +51,7 @@ const Orders = (props) => {
           ))}
         </TableBody>
       </Table>
-      <Link color="primary" to="/bookings">
+      <Link color="primary" to="/bookings" cy-data="orders-details-link">
         See more orders
       </Link>
     </React.Fragment>

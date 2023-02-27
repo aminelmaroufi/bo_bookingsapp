@@ -42,7 +42,7 @@ function Sidebar() {
   return (
     <>
       <Hidden lgDown>
-        <SidebarWrapper>
+        <SidebarWrapper data-cy="dash-sidebar">
           <Scrollbars autoHide>
             <TopSection>
               <Logo />
@@ -59,7 +59,7 @@ function Sidebar() {
           variant="temporary"
           elevation={9}
         >
-          <SidebarWrapper>
+          <SidebarWrapper data-cy="dash-sidebar">
             <Scrollbars autoHide>
               <TopSection>
                 <Logo />

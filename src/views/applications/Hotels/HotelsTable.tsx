@@ -78,6 +78,7 @@ const HotelsTable: FC<HotelsTableProps> = ({
 }) => {
   const dispatch = useDispatch();
   const [q, setTerm] = useState(term);
+  const [firstRender, setFirstRender] = useState(true);
   const theme = useTheme();
 
   let searchTerm = new Subject();
@@ -90,7 +91,7 @@ const HotelsTable: FC<HotelsTableProps> = ({
     const subscription = searchTerm
       .pipe(debounceTime(300))
       .subscribe((term: string) => {
-        if (term.length === 0 || term.length > 2) {
+        if ((!firstRender && term.length === 0) || term.length > 2) {
           const params = {
             q: term,
             page: 1,
@@ -102,6 +103,10 @@ const HotelsTable: FC<HotelsTableProps> = ({
       subscription.unsubscribe();
     };
   }, [q]);
+
+  useEffect(() => {
+    setFirstRender(false);
+  }, [hotels]);
 
   useEffect(() => {
     searchTerm.next(q);
@@ -136,9 +141,10 @@ const HotelsTable: FC<HotelsTableProps> = ({
               </IconButton>
             ),
           }}
+          cy-data="hotels-search-box"
         />
       </Box>
-      <TableContainer>
+      <TableContainer data-testid="hotels-table">
         <Table>
           <TableHead>
             <TableRow>
@@ -290,6 +296,7 @@ const HotelsTable: FC<HotelsTableProps> = ({
           }}
         >
           <Button
+            cy-data="export-hotels-btn"
             sx={{ mt: { xs: 2, md: 0 } }}
             variant="contained"
             startIcon={<DownloadTwoTone fontSize="small" />}

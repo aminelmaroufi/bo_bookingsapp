@@ -4,6 +4,7 @@ declare global {
     interface Chainable {
       login(): Chainable<void>;
       logout(): Chainable<void>;
+      goToHotels(): Chainable<void>;
     }
   }
 }

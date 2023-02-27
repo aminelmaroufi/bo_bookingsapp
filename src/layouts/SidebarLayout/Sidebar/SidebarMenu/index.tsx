@@ -223,6 +223,7 @@ function SidebarMenu() {
               {section.heading}
             </ListSubheader>
           }
+          data-cy="nav-list"
         >
           {renderSidebarMenuItems({
             items: section.items,

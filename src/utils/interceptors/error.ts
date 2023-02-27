@@ -1,19 +1,13 @@
-import { AxiosError } from "axios";
 import { browserHistory } from "src/redux/reducers/history";
-import { useLocation } from "react-router-dom";
+import ActionTypes from "../../utils/actionTypes";
+import { store } from "src/index";
 
 const DEBUG = process.env.REACT_APP_NODE_ENV !== "production";
 const errorInterceptor = (axiosInstance) => {
   axiosInstance.interceptors.response.use(
-    (response) => {
-      return response;
-      //Response Successful
-    },
+    (response) => response,
     (error) => {
-      error = JSON.stringify(error);
-      error = JSON.parse(error);
-
-      if (error && error.status === 401) {
+      if (error.response && error.response.status === 401) {
         const currPath = browserHistory.location.pathname;
 
         if (
@@ -21,16 +15,26 @@ const errorInterceptor = (axiosInstance) => {
             "/session/forgot-password",
             "/session/reset-password",
             "/session/reset-password/invalid",
+            "/login",
           ].includes(currPath)
-        )
-          return;
-        else return browserHistory.push("/login");
-        //   //Unauthorized
-        //   //redirect to Login
-      } else if (error && error.response.status === 500) {
-        return browserHistory.push("/500");
+        ) {
+          return error.response;
+        } else {
+          //   //Unauthorized
+          //   //redirect to Login
+          store.dispatch({ type: ActionTypes.LOGOUT_SUCCESS });
+          store.dispatch({
+            type: ActionTypes.API_CALL_FAILURE,
+            payload: {
+              message: error.response.data.result.message,
+            },
+          });
+          return browserHistory.push("/login");
+        }
+      } else if (error.response && error.response.status === 500) {
         //Unauthorized
         //redirect to 500 page
+        return browserHistory.push("/500");
       } else {
         //dispatch your error in a more user friendly manner
         if (DEBUG) {

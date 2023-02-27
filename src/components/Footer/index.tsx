@@ -10,7 +10,7 @@ const FooterWrapper = styled(Box)(
 
 const Footer = () => {
   return (
-    <FooterWrapper>
+    <FooterWrapper data-cy="footer">
       <Container maxWidth="xl">
         <Box
           py={3}

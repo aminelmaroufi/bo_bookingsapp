@@ -32,9 +32,10 @@ const StatisticsCard = ({
   icon,
   direction,
   increase,
+  type,
 }) => {
   return (
-    <Card>
+    <Card cy-data={type}>
       <Box>
         <Box p={2}>
           <Grid container alignItems="center">

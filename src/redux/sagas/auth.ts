@@ -55,8 +55,8 @@ export function* login_request(action: any) {
       action.email,
       action.password
     );
-    const data = response.data;
 
+    const data = response.data;
     if (data.ok) {
       yield all([
         put({

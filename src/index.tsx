@@ -12,7 +12,7 @@ import configureStore from "./redux/store";
 import { browserHistory } from "./redux/reducers/history";
 import { SidebarProvider } from "./contexts/SidebarContext";
 
-const store = configureStore();
+export const store = configureStore();
 
 ReactDOM.render(
   <HelmetProvider>

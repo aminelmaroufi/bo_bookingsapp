@@ -5,10 +5,6 @@ import adapter from "../utils/adapter";
 //   result: object;
 // }
 
-// export interface IResult {
-//   data: IData;
-// }
-
 export const checkUser = () => {
   return adapter.get("/me").catch((err) => {
     let error: any;
@@ -29,15 +25,7 @@ export const login = (email: string, password: string) => {
     password: password,
   };
   return adapter.post("/auth/signin?scope=admin", payload).catch((err) => {
-    let error: any;
-    if (typeof err === "string") {
-      error.message = err;
-    } else {
-      error = err.response.data.message
-        ? err.response.data.result.message
-        : err.response.data.result.message;
-    }
-    return Promise.reject(error);
+    return Promise.reject(err);
   });
 };
 

@@ -10,7 +10,7 @@ const Deposits = (props) => {
   return (
     <React.Fragment>
       <Title>Monthly total amount</Title>
-      <Typography component="p" variant="h4">
+      <Typography component="p" variant="h4" cy-data="data-amount-currMonth">
         {numeral(props.totalAmount.totalAmountOfMonth).format(`$0,0.00`)}{" "}
         {props.totalAmount.percentOfIncrease >= 0 ? (
           <>
@@ -33,7 +33,7 @@ const Deposits = (props) => {
         for {Moment(new Date()).format("MMM YYYY")}
       </Typography>
       <div>
-        <Link color="primary" to="/bookings">
+        <Link color="primary" to="/bookings" cy-data="deposit-view-viewDetails">
           View details
         </Link>
       </div>

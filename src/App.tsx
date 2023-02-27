@@ -54,7 +54,7 @@ const App = () => {
   return (
     <ThemeProvider>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <ToastContainer />
+        <ToastContainer data-testid="toastify" />
         <CssBaseline />
         {fetching && <SuspenseLoader />}
         {content}

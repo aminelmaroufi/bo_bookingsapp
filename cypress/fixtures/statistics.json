@@ -1,0 +1,223 @@
+{
+  "ok": true,
+  "result": {
+    "message": "",
+    "hotels": {
+      "total": 14,
+      "percentOfIncrease": 2
+    },
+    "rooms": {
+      "total": 30,
+      "percentOfIncrease": 6
+    },
+    "customers": {
+      "total": 14,
+      "percentOfIncrease": 10
+    },
+    "orders": {
+      "total": 27,
+      "lastOrders": [
+        {
+          "price": 615,
+          "night_numbers": 4,
+          "_id": "630e2aab1aae2772f0a4a955",
+          "user": {
+            "firstname": "amine",
+            "lastname": "elma",
+            "email": "amine.elma@gmail.com",
+            "_id": "623b4768ae390fc06477241a",
+            "phone": "0878765656",
+            "created_at": "2022-05-23T16:14:33.352Z",
+            "updated_at": "2022-06-27T14:07:46.864Z"
+          },
+          "hotel": {
+            "rating": 4,
+            "_id": "62b336f6899a4c0c17c6533a",
+            "name": "Hotel le Nice Etoile",
+            "short_address": "0.5 km from centerBeach Nearby",
+            "address": " 14 Rue Biscarra, 06000 Nice, France",
+            "location": "900 m from Plage Beau Rivage (8.1) • 13 min walk",
+            "type": "Double room",
+            "created_at": "2022-06-22T15:36:22.461Z",
+            "updated_at": "2022-06-22T15:39:04.740Z"
+          },
+          "room": {
+            "price": 108,
+            "_id": "62b3373e899a4c0c17c6533d",
+            "title": "Double room",
+            "advantage": "Breakfast availible, pay at the property.",
+            "created_at": "2022-06-22T15:37:34.406Z",
+            "updated_at": "2022-06-22T15:37:34.406Z"
+          },
+          "check_in_date": "2022-10-15T23:00:00.000Z",
+          "check_out_date": "2022-10-17T23:00:00.000Z",
+          "created_at": "2022-08-30T15:20:12.372Z",
+          "updated_at": "2022-08-30T15:20:12.372Z"
+        },
+        {
+          "price": 615,
+          "night_numbers": 4,
+          "_id": "630e2a831aae2772f0a4a954",
+          "user": {
+            "firstname": "amine",
+            "lastname": "elma",
+            "email": "amine.elma@gmail.com",
+            "_id": "623b4768ae390fc06477241a",
+            "phone": "0878765656",
+            "created_at": "2022-05-23T16:14:33.352Z",
+            "updated_at": "2022-06-27T14:07:46.864Z"
+          },
+          "hotel": {
+            "rating": 4,
+            "_id": "62b336f6899a4c0c17c6533a",
+            "name": "Hotel le Nice Etoile",
+            "short_address": "0.5 km from centerBeach Nearby",
+            "address": " 14 Rue Biscarra, 06000 Nice, France",
+            "location": "900 m from Plage Beau Rivage (8.1) • 13 min walk",
+            "type": "Double room",
+            "created_at": "2022-06-22T15:36:22.461Z",
+            "updated_at": "2022-06-22T15:39:04.740Z"
+          },
+          "room": {
+            "price": 108,
+            "_id": "62b3373e899a4c0c17c6533d",
+            "title": "Double room",
+            "advantage": "Breakfast availible, pay at the property.",
+            "created_at": "2022-06-22T15:37:34.406Z",
+            "updated_at": "2022-06-22T15:37:34.406Z"
+          },
+          "check_in_date": "2022-09-10T23:00:00.000Z",
+          "check_out_date": "2022-09-13T23:00:00.000Z",
+          "created_at": "2022-08-30T15:19:32.329Z",
+          "updated_at": "2022-08-30T15:19:32.329Z"
+        },
+        {
+          "price": 615,
+          "night_numbers": 4,
+          "_id": "630e2a521aae2772f0a4a953",
+          "user": {
+            "firstname": "amine",
+            "lastname": "elma",
+            "email": "amine.elma@gmail.com",
+            "_id": "623b4768ae390fc06477241a",
+            "phone": "0878765656",
+            "created_at": "2022-05-23T16:14:33.352Z",
+            "updated_at": "2022-06-27T14:07:46.864Z"
+          },
+          "hotel": {
+            "rating": 4,
+            "_id": "62b336f6899a4c0c17c6533a",
+            "name": "Hotel le Nice Etoile",
+            "short_address": "0.5 km from centerBeach Nearby",
+            "address": " 14 Rue Biscarra, 06000 Nice, France",
+            "location": "900 m from Plage Beau Rivage (8.1) • 13 min walk",
+            "type": "Double room",
+            "created_at": "2022-06-22T15:36:22.461Z",
+            "updated_at": "2022-06-22T15:39:04.740Z"
+          },
+          "room": {
+            "price": 108,
+            "_id": "62b3373e899a4c0c17c6533d",
+            "title": "Double room",
+            "advantage": "Breakfast availible, pay at the property.",
+            "created_at": "2022-06-22T15:37:34.406Z",
+            "updated_at": "2022-06-22T15:37:34.406Z"
+          },
+          "check_in_date": "2022-10-10T23:00:00.000Z",
+          "check_out_date": "2022-10-15T23:00:00.000Z",
+          "created_at": "2022-08-30T15:18:44.334Z",
+          "updated_at": "2022-08-30T15:18:44.334Z"
+        },
+        {
+          "price": 500,
+          "night_numbers": 3,
+          "_id": "630e2a381aae2772f0a4a952",
+          "user": {
+            "firstname": "amine",
+            "lastname": "elma",
+            "email": "amine.elma@gmail.com",
+            "_id": "623b4768ae390fc06477241a",
+            "phone": "0878765656",
+            "created_at": "2022-05-23T16:14:33.352Z",
+            "updated_at": "2022-06-27T14:07:46.864Z"
+          },
+          "hotel": {
+            "rating": 4,
+            "_id": "62b336f6899a4c0c17c6533a",
+            "name": "Hotel le Nice Etoile",
+            "short_address": "0.5 km from centerBeach Nearby",
+            "address": " 14 Rue Biscarra, 06000 Nice, France",
+            "location": "900 m from Plage Beau Rivage (8.1) • 13 min walk",
+            "type": "Double room",
+            "created_at": "2022-06-22T15:36:22.461Z",
+            "updated_at": "2022-06-22T15:39:04.740Z"
+          },
+          "room": {
+            "price": 108,
+            "_id": "62b3373e899a4c0c17c6533d",
+            "title": "Double room",
+            "advantage": "Breakfast availible, pay at the property.",
+            "created_at": "2022-06-22T15:37:34.406Z",
+            "updated_at": "2022-06-22T15:37:34.406Z"
+          },
+          "check_in_date": "2022-09-10T23:00:00.000Z",
+          "check_out_date": "2022-09-15T23:00:00.000Z",
+          "created_at": "2022-08-30T15:18:17.489Z",
+          "updated_at": "2022-08-30T15:18:17.489Z"
+        },
+        {
+          "price": 415,
+          "night_numbers": 3,
+          "_id": "630e2a241aae2772f0a4a951",
+          "user": {
+            "firstname": "amine",
+            "lastname": "elma",
+            "email": "amine.elma@gmail.com",
+            "_id": "623b4768ae390fc06477241a",
+            "phone": "0878765656",
+            "created_at": "2022-05-23T16:14:33.352Z",
+            "updated_at": "2022-06-27T14:07:46.864Z"
+          },
+          "hotel": {
+            "rating": 4,
+            "_id": "62b336f6899a4c0c17c6533a",
+            "name": "Hotel le Nice Etoile",
+            "short_address": "0.5 km from centerBeach Nearby",
+            "address": " 14 Rue Biscarra, 06000 Nice, France",
+            "location": "900 m from Plage Beau Rivage (8.1) • 13 min walk",
+            "type": "Double room",
+            "created_at": "2022-06-22T15:36:22.461Z",
+            "updated_at": "2022-06-22T15:39:04.740Z"
+          },
+          "room": {
+            "price": 108,
+            "_id": "62b3373e899a4c0c17c6533d",
+            "title": "Double room",
+            "advantage": "Breakfast availible, pay at the property.",
+            "created_at": "2022-06-22T15:37:34.406Z",
+            "updated_at": "2022-06-22T15:37:34.406Z"
+          },
+          "check_in_date": "2022-09-01T23:00:00.000Z",
+          "check_out_date": "2022-09-04T23:00:00.000Z",
+          "created_at": "2022-08-30T15:17:57.661Z",
+          "updated_at": "2022-08-30T15:17:57.661Z"
+        }
+      ],
+      "percentOfIncrease": 0
+    },
+    "totalAmount": {
+      "totalAmountOfMonth": 1200,
+      "percentOfIncrease": 3.5
+    },
+    "chartData": [
+      {
+        "_id": 2,
+        "total": 600
+      },
+      {
+        "_id": 1,
+        "total": 1200
+      }
+    ]
+  }
+}

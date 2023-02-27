@@ -64,6 +64,7 @@ const Dashboard = () => {
                 }%`,
               }}
               icon={{ color: "info", component: "hotel" }}
+              type="hotels-card"
             />
           </Grid>
           <Grid item xs={12} sm={6} xl={3}>
@@ -78,6 +79,7 @@ const Dashboard = () => {
                 }%`,
               }}
               icon={{ color: "info", component: "bed" }}
+              type="rooms-card"
             />
           </Grid>
           <Grid item xs={12} sm={6} xl={3}>
@@ -92,6 +94,7 @@ const Dashboard = () => {
                 }%`,
               }}
               icon={{ color: "info", component: "group" }}
+              type="customers-card"
             />
           </Grid>
           <Grid item xs={12} sm={6} xl={3}>
@@ -106,6 +109,7 @@ const Dashboard = () => {
                 }%`,
               }}
               icon={{ color: "info", component: "list_alt" }}
+              type="orders-card"
             />
           </Grid>
         </Grid>

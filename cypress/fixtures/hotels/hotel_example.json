@@ -1,0 +1,35 @@
+{
+  "rating": 4,
+  "rooms": [
+    {
+      "price": 150,
+      "_id": "62b9b8f2ed823f5a782a2cf3",
+      "title": "Budget Double Room without Window",
+      "advantage": "1 full bed",
+      "room_picture": "62b9b8f2ed823f5a782a2cf1",
+      "created_at": "2022-06-27T14:04:34.748Z",
+      "updated_at": "2022-06-27T14:04:34.748Z"
+    },
+    {
+      "price": 145,
+      "_id": "62b9b90eed823f5a782a2cf7",
+      "title": "Small Double Room",
+      "advantage": "1 full bed",
+      "room_picture": "62b9b90eed823f5a782a2cf5",
+      "created_at": "2022-06-27T14:05:02.218Z",
+      "updated_at": "2022-06-27T14:05:02.218Z"
+    }
+  ],
+  "id": "62b9b8a1ed823f5a782a2cf0",
+  "name": "Joy Hotel",
+  "city": "Amsterdam",
+  "country": "Netherlands",
+  "short_address": "Bullwijlk station is within 250m",
+  "address": "85 Hullenbergweg, Zuidoost, 1101 CS Amsterdam, Netherlands",
+  "location": "8.5 km from centerSubway Access",
+  "type": "85 Hullenbergweg, Zuidoost, 1101 CS Amsterdam, Netherlands",
+  "main_picture": "62b9b8a1ed823f5a782a2cec",
+  "second_picture": "62b9b8a1ed823f5a782a2ced",
+  "created_at": "2022-06-27T14:03:13.446Z",
+  "updated_at": "2022-06-27T14:05:02.220Z"
+}

@@ -1,5 +1,4 @@
 import { takeLatest, all } from "redux-saga/effects";
-import { AxiosResponse } from "axios";
 import recordSaga from "../recordSaga";
 import ActionTypes from "src/utils/actionTypes";
 import watchDashRequest, { get_statistics_request } from "../dash";

@@ -1,17 +1,40 @@
-image: node:latest
+# image: node:latest
 
-before_script:
-  - apt-get update -qy
-  - apt-get install -y ruby-dev
-  - gem install dpl
+# before_script:
+#   - apt-get update -qy
+#   - apt-get install -y ruby-dev
+#   - gem install dpl
 
-stages:
-  - production
+# stages:
+#   - production
 
-production:
-  stage: production
-  image: ruby:latest
+# production:
+#   stage: production
+#   image: ruby:latest
+#   script:
+#     - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
+#   only:
+#     - production
+
+default:
+  image: node:latest
+
+deploy_preview:
+  stage: deploy
+  except:
+    - production
   script:
-    - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
+    - npm install --global vercel
+    - vercel pull --yes --environment=preview --token=$VERCEL_TOKEN
+    - vercel build --token=$VERCEL_TOKEN
+    - vercel deploy --prebuilt  --token=$VERCEL_TOKEN
+
+deploy_production:
+  stage: deploy
   only:
     - production
+  script:
+    - npm install --global vercel
+    - vercel pull --yes --environment=production --token=$VERCEL_TOKEN
+    - vercel build --prod --token=$VERCEL_TOKEN
+    - vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN

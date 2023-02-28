@@ -20,21 +20,21 @@ default:
   image: node:latest
 
 stages:
-  # - build
+  - build
   - test
   # - deploy
 
-# build_app:
-#   stage: build
-#   only:
-#     - master
-#   image: node:18-alpine
-#   script:
-#     - npm ci
-#     - npm run build
-#   artifacts:
-#     paths:
-#       - build
+build_app:
+  stage: build
+  only:
+    - master
+  image: node:18-alpine
+  script:
+    - npm ci
+    - npm run build
+  artifacts:
+    paths:
+      - build
 
 # unit-tests:
 #   image: node:latest
@@ -54,27 +54,16 @@ stages:
 #       junit:
 #         - junit.xml
 
-# e2e tests:
-#   stage: test
-#   image: cypress/base:16.18.1
-#   script:
-#     - npm ci
-#     - npm install -g serve
-#     - npm install -g wait-on
-#     - serve -s build &
-#     - wait-on http://localhost:3000
-#     - npm run cypress-run
-
 e2e tests:
-  image: cypress/browsers:node12.14.1-chrome85-ff81
   stage: test
+  image: cypress/base:16.18.1
   script:
-    # install dependencies
     - npm ci
-    # start the server in the background
-    - npm run start:ci &
-    # run Cypress tests
-    - npx cypress run --browser chrome
+    - npm install -g serve
+    - npm install -g wait-on
+    - serve -s build &
+    - wait-on http://localhost:3000
+    - CI=true npm run cypress-run
 # deploy_production:
 #   stage: deploy
 #   only:

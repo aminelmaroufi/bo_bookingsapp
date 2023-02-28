@@ -20,7 +20,7 @@ default:
   image: node:latest
 
 stages:
-  # - build
+  - build
   - test
   - deploy
 

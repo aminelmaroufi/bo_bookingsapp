@@ -22,7 +22,7 @@ default:
 stages:
   - build
   - test
-  - deploy
+  # - deploy
 
 build_app:
   stage: build
@@ -58,7 +58,7 @@ e2e_tests:
   stage: test
   only:
     - master
-  image: cypress/base:latest
+  image: cypress/base
   script:
     - npm ci
     - npm install -g serve
@@ -66,13 +66,12 @@ e2e_tests:
     - serve -s build &
     - wait-on http://localhost:3000
     - npm run cypress-run
-
-deploy_production:
-  stage: deploy
-  only:
-    - production
-  script:
-    - npm install --global vercel
-    - vercel pull --yes --environment=production --token=$VERCEL_TOKEN
-    - vercel build --prod --token=$VERCEL_TOKEN
-    - vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
+# deploy_production:
+#   stage: deploy
+#   only:
+#     - production
+#   script:
+#     - npm install --global vercel
+#     - vercel pull --yes --environment=production --token=$VERCEL_TOKEN
+#     - vercel build --prod --token=$VERCEL_TOKEN
+#     - vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN

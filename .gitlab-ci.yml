@@ -60,8 +60,8 @@ e2e tests:
     - npm install -g serve
     - npm install -g wait-on
     - serve -s build &
-    - wait-on http://localhost:3000
-    - CI=true npm run cypress-run
+    # - wait-on http://localhost:3000
+    - npm run cypress-run
 # deploy_production:
 #   stage: deploy
 #   only:

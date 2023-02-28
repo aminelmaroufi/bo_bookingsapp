@@ -54,6 +54,7 @@ build_app:
 
 e2e tests:
   stage: test
+  deponds_on: build
   image: cypress/base:16.18.1
   script:
     - npm ci

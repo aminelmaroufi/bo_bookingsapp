@@ -54,11 +54,9 @@ build_app:
 #       junit:
 #         - junit.xml
 
-e2e_tests:
+e2e tests:
   stage: test
-  only:
-    - master
-  image: cypress/base
+  image: cypress/base:16.18.1
   script:
     - npm ci
     - npm install -g serve

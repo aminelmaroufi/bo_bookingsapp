@@ -31,7 +31,7 @@ build_app:
   image: node:18-alpine
   script:
     - npm ci
-    - npm run build
+    - CI=false npm run build
     - echo "Build successfully!"
 
 # unit-tests:

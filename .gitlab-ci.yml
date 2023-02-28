@@ -54,6 +54,8 @@ build_app:
 
 e2e_tests:
   stage: test
+  only:
+    - master
   image: cypress/base:latest
   script:
     - npm ci

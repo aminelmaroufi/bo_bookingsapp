@@ -24,15 +24,17 @@ stages:
   - test
   - deploy
 
-# build_app:
-#   stage: build
-#   image: node:18-alpine
-#   script:
-#     - npm ci
-#     - npm run build
-#   artifacts:
-#     paths:
-#       - build
+build_app:
+  stage: build
+  only:
+    - master
+  image: node:18-alpine
+  script:
+    - npm ci
+    - npm run build
+  artifacts:
+    paths:
+      - build
 
 # unit-tests:
 #   image: node:latest

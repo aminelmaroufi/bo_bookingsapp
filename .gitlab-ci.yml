@@ -64,9 +64,9 @@ e2e tests:
     - npm ci
     - npm i wait-on
     - CI=false npm run build
-    # - npm run start &
-    # - $(npm bin)/wait-on http://localhost:3000
-    - npm run cypress:ci
+    - npm run start &
+    - $(npm bin)/wait-on http://localhost:3000
+    - npm run cypress:run
 # deploy_production:
 #   stage: deploy
 #   only:

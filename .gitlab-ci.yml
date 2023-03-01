@@ -61,7 +61,7 @@ e2e_tests:
   only:
     - master
   stage: test
-  image: cypress/base:12.18.4
+  image: cypress/browsers:node18.12.0-chrome107
   script:
     - npm ci
     # - npm install -g serve

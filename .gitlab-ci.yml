@@ -87,5 +87,5 @@ e2e tests:
     - npm install -g serve
     - npm install -g wait-on
     - serve -s build &
-    - wait-on http://localhost:3000
+    - $(npm bin)/wait-on http://localhost:3000
     - npm run cypress:run

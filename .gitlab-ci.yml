@@ -62,9 +62,10 @@ e2e tests:
   image: cypress/base:12.18.4
   script:
     - npm ci
+    - npm install -g serve
     - npm i wait-on
     - CI=false npm run build
-    - npm run start &
+    - serve -s build &
     - $(npm bin)/wait-on http://localhost:3000
     - npm run cypress:run
 # deploy_production:

@@ -81,11 +81,11 @@ build_app:
 #     - vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
 e2e tests:
   stage: test
-  image: node:18-alpine
+  image: cypress/browsers:node18.12.0-chrome107
   script:
     - npm ci
     - npm install -g serve
     - npm install -g wait-on
     - serve -s build &
-    - $(npm bin)/wait-on http://localhost:3000
+    - wait-on http://localhost:3000
     - npm run cypress:run

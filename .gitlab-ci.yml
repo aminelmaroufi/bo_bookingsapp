@@ -69,7 +69,14 @@ e2e_tests:
     # - CI=false npm run build
     - npm start &
     - $(npm bin)/wait-on http://localhost:3000
-    - npm run cypress:run
+    - npm run e2e
+  artifacts:
+    when: always
+    paths:
+      - test-results.xml
+      - cypress/screenshots
+    reports:
+      junit: test-results.xml
 # deploy_production:
 #   stage: deploy
 #   only:

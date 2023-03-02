@@ -60,6 +60,7 @@
     "cypress": "./node_modules/.bin/cypress open",
     "cypress-local": "concurrently \"npm run start\" \"npm run cypress-open\"",
     "cypress:run": "./node_modules/.bin/cypress run",
+    "e2e": "./node_modules/.bin/cypress run --browser chrome --headless --reporter junit",
     "cypress:ci": " \"npm run start\" http://localhost:3000 \"npm run cypress:run\"",
     "eject": "react-scripts eject",
     "test:ci": "npm run test -- --testResultsProcessor=\"jest-junit\" --watchAll=false --ci --coverage"

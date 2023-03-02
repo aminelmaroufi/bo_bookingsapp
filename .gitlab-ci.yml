@@ -38,6 +38,9 @@ build_app:
     - npm ci --prefer-offline
     - CI=false npm run build
     - echo "Build successfully!"
+  artifacts:
+    paths:
+      - build
 
 # unit-tests:
 #   image: node:latest
@@ -64,11 +67,13 @@ e2e_tests:
   image: cypress/browsers:node12.14.1-chrome85-ff81
   script:
     - npm ci --prefer-offline
-    # - npm install -g serve
+    - npm install -g serve
     - npm i wait-on
-    # - CI=false npm run build
-    - npm start &
-    - $(npm bin)/wait-on http://localhost:3000
+    - CI=false npm run build
+    # - npm start &
+    - serve -s build &
+    # - $(npm bin)/wait-on http://localhost:3000
+    - wait-on http://localhost:3000
     - npm run e2e
   artifacts:
     when: always

@@ -25,19 +25,19 @@ variables:
   CYPRESS_baseUrl: "http://localhost:3000"
 
 stages:
-  - build
+  # - build
   - test
   # - deploy
 
-build_app:
-  stage: build
-  only:
-    - master
-  image: node:18-alpine
-  script:
-    - npm ci
-    - CI=false npm run build
-    - echo "Build successfully!"
+# build_app:
+#   stage: build
+#   only:
+#     - master
+#   image: node:18-alpine
+#   script:
+#     - npm ci
+#     - CI=false npm run build
+#     - echo "Build successfully!"
 
 # unit-tests:
 #   image: node:latest
@@ -64,6 +64,7 @@ e2e_tests:
   image: cypress/browsers:node18.12.0-chrome107
   script:
     - npm ci
+    - CI=false npm run build
     # - npm install -g serve
     - npm i wait-on
     # - CI=false npm run build

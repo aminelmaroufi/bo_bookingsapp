@@ -29,36 +29,36 @@ stages:
   - test
   # - deploy
 
-# build_app:
-#   stage: build
-#   only:
-#     - master
-#   image: node:18-alpine
-#   script:
-#     - npm ci --prefer-offline
-#     - CI=false npm run build
-#     - echo "Build successfully!"
-#   artifacts:
-#     paths:
-#       - build
-
-unit-tests:
-  image: node:latest
-  stage: test
+build_app:
+  stage: build
   only:
     - master
-  before_script:
-    - npm install
+  image: node:18-alpine
   script:
-    - npm run test:ci
-  coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
+    - npm ci --prefer-offline
+    - CI=false npm run build
+    - echo "Build successfully!"
   artifacts:
     paths:
-      - coverage/
-    when: always
-    reports:
-      junit:
-        - junit.xml
+      - build
+
+# unit-tests:
+#   image: node:latest
+#   stage: test
+#   only:
+#     - master
+#   before_script:
+#     - npm install
+#   script:
+#     - npm run test:ci
+#   coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
+#   artifacts:
+#     paths:
+#       - coverage/
+#     when: always
+#     reports:
+#       junit:
+#         - junit.xml
 
 e2e_tests:
   only:

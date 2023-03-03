@@ -72,8 +72,8 @@ e2e_tests:
     # - CI=false npm run build
     # - npm start &
     - serve -s build &
-    # - $(npm bin)/wait-on http://localhost:3000
-    - wait-on http://localhost:3000
+    - $(npm bin)/wait-on http://localhost:3000
+    # - wait-on http://localhost:3000
     - npm run e2e
   # artifacts:
   #   when: always

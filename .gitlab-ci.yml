@@ -75,13 +75,13 @@ e2e_tests:
     # - $(npm bin)/wait-on http://localhost:3000
     - wait-on http://localhost:3000
     - npm run e2e
-  artifacts:
-    when: always
-    paths:
-      - test-results.xml
-      - cypress/screenshots
-    reports:
-      junit: test-results.xml
+  # artifacts:
+  #   when: always
+  #   paths:
+  #     - test-results.xml
+  #     - cypress/screenshots
+  #   reports:
+  #     junit: test-results.xml
 # deploy_production:
 #   stage: deploy
 #   only:

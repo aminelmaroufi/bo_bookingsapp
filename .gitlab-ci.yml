@@ -25,22 +25,22 @@ variables:
   CYPRESS_baseUrl: "http://localhost:3000"
 
 stages:
-  # - build
+  - build
   - test
   # - deploy
 
-# build_app:
-#   stage: build
-#   only:
-#     - master
-#   image: node:18-alpine
-#   script:
-#     - npm ci --prefer-offline
-#     - CI=false npm run build
-#     - echo "Build successfully!"
-#   artifacts:
-#     paths:
-#       - build
+build_app:
+  stage: build
+  only:
+    - master
+  image: node:18-alpine
+  script:
+    - npm ci --prefer-offline
+    - CI=false npm run build
+    - echo "Build successfully!"
+  artifacts:
+    paths:
+      - build
 
 # unit-tests:
 #   image: node:latest
@@ -61,15 +61,15 @@ stages:
 #         - junit.xml
 
 e2e_tests:
-  image: cypress/browsers:node14.17.0-chrome95-ff95
+  image: cypress/browsers:node18.12.0-chrome107
   only:
     - master
   stage: test
   script:
     - npm ci --prefer-offline
     - npm install -g serve
-    - npm i wait-on
-    - CI=false npm run build
+    - npm i -g wait-on
+    # - CI=false npm run build
     # - npm start &
     - serve -s build &
     - wait-on http://localhost:3000

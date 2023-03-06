@@ -37,9 +37,7 @@ describe("Test the hotels page", () => {
     });
 
     it("should render table header", () => {
-      cy.get(
-        ".MuiTableRow-root.MuiTableRow-head.css-k4az6q-MuiTableRow-root"
-      ).should("be.visible");
+      cy.get("thead").should("be.visible");
     });
 
     it("should render the hotels table", () => {

@@ -5,7 +5,7 @@ import adapter from "../utils/adapter";
 //   result: object;
 // }
 
-export const checkUser = () => {
+export let checkUser = () => {
   return adapter.get("/me").catch((err) => {
     let error: any;
     if (typeof err === "string") {

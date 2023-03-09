@@ -1,10 +1,12 @@
 import { browserHistory } from "src/redux/reducers/history";
 import ActionTypes from "../../utils/actionTypes";
-import { store } from "src/index";
+// import { store } from "src/index";
+import adapter from "../adapter";
 
-const DEBUG = process.env.REACT_APP_NODE_ENV !== "production";
-const errorInterceptor = (axiosInstance) => {
-  axiosInstance.interceptors.response.use(
+const REACT_APP_NODE_ENV = process.env.NODE_ENV;
+
+const errorInterceptor = (store) => {
+  adapter.interceptors.response.use(
     (response) => response,
     (error) => {
       if (error.response && error.response.status === 401) {
@@ -22,6 +24,7 @@ const errorInterceptor = (axiosInstance) => {
         } else {
           //   //Unauthorized
           //   //redirect to Login
+          // if (store) {
           store.dispatch({ type: ActionTypes.LOGOUT_SUCCESS });
           store.dispatch({
             type: ActionTypes.API_CALL_FAILURE,
@@ -29,6 +32,7 @@ const errorInterceptor = (axiosInstance) => {
               message: error.response.data.result.message,
             },
           });
+          // }
           return browserHistory.push("/login");
         }
       } else if (error.response && error.response.status === 500) {
@@ -37,7 +41,7 @@ const errorInterceptor = (axiosInstance) => {
         return browserHistory.push("/500");
       } else {
         //dispatch your error in a more user friendly manner
-        if (DEBUG) {
+        if (REACT_APP_NODE_ENV !== "production") {
           //easier debugging
           console.group("Error");
           console.log(error);

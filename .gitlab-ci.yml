@@ -42,23 +42,23 @@ build_app:
     paths:
       - build
 
-# unit-tests:
-#   image: node:latest
-#   stage: test
-#   only:
-#     - master
-#   before_script:
-#     - npm install
-#   script:
-#     - npm run test:ci
-#   coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
-#   artifacts:
-#     paths:
-#       - coverage/
-#     when: always
-#     reports:
-#       junit:
-#         - junit.xml
+unit-tests:
+  image: node:latest
+  stage: test
+  only:
+    - master
+  before_script:
+    - npm install
+  script:
+    - npm run test:ci
+  coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
+  artifacts:
+    paths:
+      - coverage/
+    when: always
+    reports:
+      junit:
+        - junit.xml
 
 e2e_tests:
   image: cypress/browsers:node18.12.0-chrome107
@@ -81,12 +81,12 @@ e2e_tests:
   #     - cypress/screenshots
   #   reports:
   #     junit: test-results.xml
-# deploy_production:
-#   stage: deploy
-#   only:
-#     - production
-#   script:
-#     - npm install --global vercel
-#     - vercel pull --yes --environment=production --token=$VERCEL_TOKEN
-#     - vercel build --prod --token=$VERCEL_TOKEN
-#     - vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
+deploy_production:
+  stage: deploy
+  only:
+    - production
+  script:
+    - npm install --global vercel
+    - vercel pull --yes --environment=production --token=$VERCEL_TOKEN
+    - vercel build --prod --token=$VERCEL_TOKEN
+    - vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN

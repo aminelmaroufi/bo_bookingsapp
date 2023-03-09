@@ -7,12 +7,14 @@ import "./index.css";
 import "react-toastify/dist/ReactToastify.css";
 import App from "./App";
 import CssBaseline from "@mui/material/CssBaseline";
+import errorInterceptor from "./utils/interceptors/error";
 import reportWebVitals from "./reportWebVitals";
 import configureStore from "./redux/store";
 import { browserHistory } from "./redux/reducers/history";
 import { SidebarProvider } from "./contexts/SidebarContext";
 
 export const store = configureStore();
+errorInterceptor(store);
 
 ReactDOM.render(
   <HelmetProvider>

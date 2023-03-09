@@ -10,6 +10,6 @@ const adapter = axios.create({
   },
 });
 
-errorInterceptor(adapter);
+// errorInterceptor(adapter);
 
 export default adapter;

@@ -1,5 +1,6 @@
 import { takeLatest, all } from "redux-saga/effects";
-import { AxiosResponse } from "axios";
+import axios, { AxiosResponse } from "axios";
+import nock from "nock";
 import { push } from "@lagunovsky/redux-react-router";
 import recordSaga from "../recordSaga";
 import watchAuthRequest, {
@@ -17,6 +18,9 @@ const error_message = "Error from API";
 const success_message = "SUCCESS_OPERATION";
 
 describe("Test watchAuthRequest sagas", () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
   it("should call 'all' with the correct functions", async () => {
     const genObject = watchAuthRequest();
     const effects = genObject.next().value;
@@ -54,18 +58,18 @@ describe("Test watchAuthRequest sagas", () => {
             user: currUser,
           },
         },
-        status: 0,
+        status: 200,
         statusText: "",
         headers: undefined,
         config: undefined,
       };
+
       const checkUserRequest = jest
         .spyOn(api, "checkUser")
         .mockImplementation(() => Promise.resolve(res));
 
       const dispatched = await recordSaga(check_user_request, null);
       expect(checkUserRequest).toHaveBeenCalledTimes(1);
-
       const expectedDispatched = [
         {
           type: ActionTypes.API_CALL_REQUEST,
@@ -88,7 +92,7 @@ describe("Test watchAuthRequest sagas", () => {
             user: null,
           },
         },
-        status: 0,
+        status: 200,
         statusText: "",
         headers: undefined,
         config: undefined,
@@ -159,7 +163,7 @@ describe("Test watchAuthRequest sagas", () => {
             user: currUser,
           },
         },
-        status: 0,
+        status: 200,
         statusText: "",
         headers: undefined,
         config: undefined,
@@ -194,7 +198,7 @@ describe("Test watchAuthRequest sagas", () => {
             user: null,
           },
         },
-        status: 0,
+        status: 200,
         statusText: "",
         headers: undefined,
         config: undefined,
@@ -241,7 +245,7 @@ describe("Test watchAuthRequest sagas", () => {
     });
   });
 
-  //Test logout_request saga
+  // Test logout_request saga
   describe("Test logout_request saga", () => {
     it("should call api and dispatch success action", async () => {
       const res: AxiosResponse<any> = {
@@ -251,7 +255,7 @@ describe("Test watchAuthRequest sagas", () => {
             message: "",
           },
         },
-        status: 0,
+        status: 200,
         statusText: "",
         headers: undefined,
         config: undefined,
@@ -285,7 +289,7 @@ describe("Test watchAuthRequest sagas", () => {
             message: error_message,
           },
         },
-        status: 0,
+        status: 200,
         statusText: "",
         headers: undefined,
         config: undefined,

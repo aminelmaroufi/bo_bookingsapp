@@ -15,7 +15,7 @@ describe("Login Page Test", () => {
   });
 
   it("should not let the user to login with an invalid email value", () => {
-    cy.get("#email").type("admin@admin", { force: true });
+    cy.get("#email").type("admin@admin");
     cy.get("#email-helper-text").should("contain", "email is not valid");
   });
 

@@ -27,7 +27,7 @@ variables:
 stages:
   - build
   - test
-  # - deploy
+  - deploy
 
 build_app:
   stage: build

@@ -25,3 +25,7 @@ yarn-debug.log*
 yarn-error.log*
 .vercel
 junit.xml
+
+#tests
+/coverage
+junit.xml

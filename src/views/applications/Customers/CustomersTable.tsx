@@ -1,4 +1,4 @@
-import { FC, ChangeEvent, useState, useEffect } from "react";
+import { FC, useState, useEffect } from "react";
 import Moment from "moment";
 import {
   Tooltip,
@@ -27,15 +27,12 @@ import {
   Rating,
   TextField,
 } from "@mui/material";
-import numeral from "numeral";
 import { CryptoOrder, CryptoOrderStatus } from "src/models/crypto_order";
 import { Link } from "react-router-dom";
 import DeleteTwoToneIcon from "@mui/icons-material/DeleteTwoTone";
 import { BlockTwoTone } from "@mui/icons-material";
 import { DownloadTwoTone } from "@mui/icons-material";
 import { SearchTwoTone } from "@mui/icons-material";
-import { debounceTime } from "rxjs/operators";
-import { Subject } from "rxjs";
 import { IUser } from "src/models";
 
 interface CustomersTableProps {
@@ -69,36 +66,31 @@ const CustomersTable: FC<CustomersTableProps> = ({
   offset,
 }) => {
   const [q, setTerm] = useState(term);
+  const [firstRender, setFirstRender] = useState(true);
   const theme = useTheme();
-
-  let searchTerm = new Subject();
 
   const onChange = (value) => {
     setTerm(value);
   };
 
   useEffect(() => {
-    const subscription = searchTerm
-      .pipe(debounceTime(300))
-      .subscribe((term: string) => {
-        if (term.length === 0 || term.length > 2) {
-          const params = {
-            q: term,
-            page: 1,
-          };
-          handlePagechange(params);
-        }
-      });
-    return () => {
-      subscription.unsubscribe();
-    };
-  }, [q]);
+    setFirstRender(false);
+  }, [customers]);
 
   useEffect(() => {
-    searchTerm.next(q);
+    if ((!firstRender && q.length === 0) || q.length > 2) {
+      const timeoutId = setTimeout(() => {
+        const params = {
+          q,
+          page: 1,
+        };
+        handlePagechange(params);
+      }, 500);
+      return () => clearTimeout(timeoutId);
+    }
   }, [q]);
 
-  const handlePageChange = (event: any, newPage: number): void => {
+  const handlePagination = (event: any, newPage: number): void => {
     const params = {
       q: q,
       page: newPage,
@@ -124,144 +116,160 @@ const CustomersTable: FC<CustomersTableProps> = ({
           }}
         />
       </Box>
-      <TableContainer>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>Customer Details</TableCell>
-              <TableCell>First Name</TableCell>
-              <TableCell>Last Name</TableCell>
-              <TableCell>Email Adress</TableCell>
-              <TableCell>Phone Number</TableCell>
-              <TableCell>Create at</TableCell>
-              <TableCell>Last update</TableCell>
-              <TableCell align="right">Actions</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {customers.map((customer) => {
-              return (
-                <TableRow hover key={customer._id}>
-                  <TableCell>
-                    <Link to={`${customer._id}/bookings`}>
-                      <Typography
-                        variant="body1"
-                        fontWeight="bold"
-                        color="text.primary"
-                        gutterBottom
-                        noWrap
-                      >
-                        {customer.fullname}
-                      </Typography>
-                    </Link>
-                  </TableCell>
-                  <TableCell>
-                    <Typography
-                      variant="body1"
-                      fontWeight="bold"
-                      color="text.primary"
-                      gutterBottom
-                      noWrap
-                    >
-                      {customer.firstname}
-                    </Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Typography
-                      variant="body1"
-                      fontWeight="bold"
-                      color="text.primary"
-                      gutterBottom
-                      noWrap
-                    >
-                      {customer.lastname}
-                    </Typography>
-                  </TableCell>
-                  <TableCell>{customer.email}</TableCell>
-                  <TableCell>{customer.phone}</TableCell>
-                  <TableCell>
-                    {Moment(customer.created_at).format("ll")}
-                  </TableCell>
-                  <TableCell>
-                    {Moment(customer.updated_at).format("ll")}
-                  </TableCell>
-                  <TableCell align="right">
-                    <Tooltip title="Block Customer" arrow>
-                      <IconButton
-                        sx={{
-                          "&:hover": {
-                            background: theme.colors.primary.lighter,
-                          },
-                          color: theme.palette.primary.main,
-                        }}
-                        color="inherit"
-                        size="small"
-                      >
-                        <BlockTwoTone fontSize="small" />
-                      </IconButton>
-                    </Tooltip>
-                    <Tooltip title="Delete Customer" arrow>
-                      <IconButton
-                        sx={{
-                          "&:hover": { background: theme.colors.error.lighter },
-                          color: theme.palette.error.main,
-                        }}
-                        color="inherit"
-                        size="small"
-                      >
-                        <DeleteTwoToneIcon fontSize="small" />
-                      </IconButton>
-                    </Tooltip>
-                  </TableCell>
+      {customers.length ? (
+        <Grid>
+          <TableContainer>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Customer Details</TableCell>
+                  <TableCell>First Name</TableCell>
+                  <TableCell>Last Name</TableCell>
+                  <TableCell>Email Adress</TableCell>
+                  <TableCell>Phone Number</TableCell>
+                  <TableCell>Create at</TableCell>
+                  <TableCell>Last update</TableCell>
+                  <TableCell align="right">Actions</TableCell>
                 </TableRow>
-              );
-            })}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <Grid
-        container
-        direction="row"
-        justifyContent="space-between"
-        alignItems="center"
-      >
-        <Grid
-          item
-          style={{
-            flex: 1,
-          }}
-        >
-          <Button
-            sx={{ mt: { xs: 2, md: 0 } }}
-            variant="contained"
-            startIcon={<DownloadTwoTone fontSize="small" />}
-            onClick={() => _export()}
+              </TableHead>
+              <TableBody>
+                {customers.map((customer) => {
+                  return (
+                    <TableRow hover key={customer._id}>
+                      <TableCell>
+                        <Link to={`${customer._id}/bookings`}>
+                          <Typography
+                            variant="body1"
+                            fontWeight="bold"
+                            color="text.primary"
+                            gutterBottom
+                            noWrap
+                          >
+                            {customer.fullname}
+                          </Typography>
+                        </Link>
+                      </TableCell>
+                      <TableCell>
+                        <Typography
+                          variant="body1"
+                          fontWeight="bold"
+                          color="text.primary"
+                          gutterBottom
+                          noWrap
+                        >
+                          {customer.firstname}
+                        </Typography>
+                      </TableCell>
+                      <TableCell>
+                        <Typography
+                          variant="body1"
+                          fontWeight="bold"
+                          color="text.primary"
+                          gutterBottom
+                          noWrap
+                        >
+                          {customer.lastname}
+                        </Typography>
+                      </TableCell>
+                      <TableCell>{customer.email}</TableCell>
+                      <TableCell>{customer.phone}</TableCell>
+                      <TableCell>
+                        {Moment(customer.created_at).format("ll")}
+                      </TableCell>
+                      <TableCell>
+                        {Moment(customer.updated_at).format("ll")}
+                      </TableCell>
+                      <TableCell align="right">
+                        <Tooltip title="Block Customer" arrow>
+                          <IconButton
+                            sx={{
+                              "&:hover": {
+                                background: theme.colors.primary.lighter,
+                              },
+                              color: theme.palette.primary.main,
+                            }}
+                            color="inherit"
+                            size="small"
+                          >
+                            <BlockTwoTone fontSize="small" />
+                          </IconButton>
+                        </Tooltip>
+                        <Tooltip title="Delete Customer" arrow>
+                          <IconButton
+                            sx={{
+                              "&:hover": {
+                                background: theme.colors.error.lighter,
+                              },
+                              color: theme.palette.error.main,
+                            }}
+                            color="inherit"
+                            size="small"
+                          >
+                            <DeleteTwoToneIcon fontSize="small" />
+                          </IconButton>
+                        </Tooltip>
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <Grid
+            container
+            direction="row"
+            justifyContent="space-between"
+            alignItems="center"
           >
-            Export bookings
-          </Button>
+            <Grid
+              item
+              style={{
+                flex: 1,
+              }}
+            >
+              <Button
+                sx={{ mt: { xs: 2, md: 0 } }}
+                variant="contained"
+                startIcon={<DownloadTwoTone fontSize="small" />}
+                onClick={() => _export()}
+              >
+                Export bookings
+              </Button>
+            </Grid>
+            <Grid
+              item
+              container
+              direction="row"
+              justifyContent="flex-end"
+              alignItems="flex-end"
+              spacing={3}
+              style={{
+                flex: 1,
+                marginTop: 5,
+              }}
+            >
+              <Pagination
+                count={pages}
+                page={activePage}
+                color="primary"
+                showFirstButton
+                showLastButton
+                onChange={handlePagination}
+              />
+            </Grid>
+          </Grid>
         </Grid>
+      ) : (
         <Grid
-          item
           container
           direction="row"
-          justifyContent="flex-end"
-          alignItems="flex-end"
-          spacing={3}
-          style={{
-            flex: 1,
-            marginTop: 5,
-          }}
+          justifyContent="center"
+          alignItems="center"
+          style={{ marginTop: 30, padding: 10 }}
         >
-          <Pagination
-            count={pages}
-            page={activePage}
-            color="primary"
-            showFirstButton
-            showLastButton
-            onChange={handlePageChange}
-          />
+          <Typography variant="subtitle2">No customers found</Typography>
         </Grid>
-      </Grid>
+      )}
     </Card>
   );
 };

@@ -19,7 +19,7 @@ const Bookings = () => {
 
   useEffect(() => {
     setSearchParams({ q: "", page: "1" });
-    // dispatch(getBookings({ q: "", page: "1" }));
+    dispatch(getBookings({ q: "", page: "1" }));
   }, [dispatch]);
 
   const handlePagechange = (params) => {

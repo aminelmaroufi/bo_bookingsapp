@@ -10,8 +10,9 @@ import {
 import { Helmet } from "react-helmet-async";
 import RefreshTwoToneIcon from "@mui/icons-material/RefreshTwoTone";
 import LoadingButton from "@mui/lab/LoadingButton";
-
 import { styled } from "@mui/material/styles";
+// import { useHistory } from "react-router-dom";
+import { browserHistory } from "src/redux/reducers/history";
 
 const GridWrapper = styled(Grid)(
   ({ theme }) => `
@@ -45,8 +46,15 @@ const MainContent = styled(Box)(
 
 function Status500() {
   const [pending, setPending] = useState(false);
+  // const history = useHistory();
+
   function handleClick() {
     setPending(true);
+
+    setTimeout(() => {
+      setPending(false);
+      browserHistory.back();
+    }, 500);
   }
 
   return (
@@ -91,8 +99,12 @@ function Status500() {
                 >
                   Refresh view
                 </LoadingButton>
-                <Button href="/" variant="contained" sx={{ ml: 1 }}>
-                  Go back
+                <Button
+                  onClick={() => browserHistory.push("/")}
+                  variant="contained"
+                  sx={{ ml: 1 }}
+                >
+                  Go home
                 </Button>
               </Box>
             </Container>

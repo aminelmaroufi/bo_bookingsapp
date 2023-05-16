@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { Grid, Container, Typography } from "@mui/material";
+import { Grid, Container } from "@mui/material";
 import { useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import PageHeader from "./PageHeader";
@@ -73,49 +73,37 @@ const Hotels = () => {
       <PageTitleWrapper maxWidth="xl">
         <PageHeader _openDialog={_openDialog} />
       </PageTitleWrapper>
-      {hotels.length === 0 && (
+
+      <Container maxWidth="xl">
         <Grid
           container
           direction="row"
-          justifyContent="center"
-          alignItems="center"
-          style={{ marginTop: 30, padding: 10 }}
+          justifyContent="flex-start"
+          alignItems="stretch"
+          spacing={3}
         >
-          <Typography variant="subtitle2">No hotels found</Typography>
-        </Grid>
-      )}
-
-      {hotels.length > 0 && (
-        <Container maxWidth="xl">
-          <Grid
-            container
-            direction="row"
-            justifyContent="flex-start"
-            alignItems="stretch"
-            spacing={3}
-          >
-            <Grid item xs={12}>
-              <HotelsTable
-                hotels={hotels}
-                openConfirmationDialog={_openConfirmationDialog}
-                _selectHotel={selectHotel}
-                getHotels={(params) => dispatch(getHotels(params))}
-                total={total}
-                pages={pages}
-                activePage={
-                  parseInt(searchParams.get("page"))
-                    ? parseInt(searchParams.get("page"))
-                    : page
-                }
-                term={searchParams.get("q") || ""}
-                offset={limit}
-                handlePagechange={(params) => handlePagechange(params)}
-                exportHotels={(params) => dispatch(exportHotels(params))}
-              />
-            </Grid>
+          <Grid item xs={12}>
+            <HotelsTable
+              hotels={hotels}
+              openConfirmationDialog={_openConfirmationDialog}
+              _selectHotel={selectHotel}
+              getHotels={(params) => dispatch(getHotels(params))}
+              total={total}
+              pages={pages}
+              activePage={
+                parseInt(searchParams.get("page"))
+                  ? parseInt(searchParams.get("page"))
+                  : page
+              }
+              term={searchParams.get("q") || ""}
+              offset={limit}
+              handlePagechange={(params) => handlePagechange(params)}
+              exportHotels={(params) => dispatch(exportHotels(params))}
+            />
           </Grid>
-        </Container>
-      )}
+        </Grid>
+      </Container>
+
       <Footer />
       <FormDialog
         open={openDialog}

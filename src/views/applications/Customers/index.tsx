@@ -19,7 +19,7 @@ const Customers = () => {
 
   useEffect(() => {
     setSearchParams({ q: "", page: "1" });
-    // dispatch(getCustomers({ q: "", page: "1" }));
+    dispatch(getCustomers({ q: "", page: "1" }));
   }, [dispatch]);
 
   const handlePagechange = (params) => {

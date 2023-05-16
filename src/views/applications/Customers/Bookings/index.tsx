@@ -40,19 +40,7 @@ const CustomerBookings = () => {
       <PageTitleWrapper maxWidth="xl">
         <PageHeader customer={customer} />
       </PageTitleWrapper>
-      {customer.bookings.length === 0 && (
-        <Grid
-          container
-          direction="row"
-          justifyContent="center"
-          alignItems="center"
-          style={{ marginTop: 30, padding: 10 }}
-        >
-          <Typography variant="subtitle2">
-            No bookings found for {customer.fullname}
-          </Typography>
-        </Grid>
-      )}
+
       <Container maxWidth="xl">
         <Grid
           container
@@ -61,26 +49,25 @@ const CustomerBookings = () => {
           alignItems="stretch"
           spacing={3}
         >
-          {customer.bookings.length > 0 && (
-            <Grid item xs={12}>
-              <BookingsTable
-                bookings={customer.bookings}
-                total={total}
-                pages={pages}
-                activePage={
-                  parseInt(searchParams.get("page"))
-                    ? parseInt(searchParams.get("page"))
-                    : page
-                }
-                term={searchParams.get("q") || ""}
-                offset={limit}
-                handlePagechange={(params) => handlePagechange(params)}
-                exportBookings={(params) =>
-                  dispatch(exportCustomerBookingsRequest(customer, params))
-                }
-              />
-            </Grid>
-          )}
+          <Grid item xs={12}>
+            <BookingsTable
+              bookings={customer.bookings}
+              total={total}
+              pages={pages}
+              activePage={
+                parseInt(searchParams.get("page"))
+                  ? parseInt(searchParams.get("page"))
+                  : page
+              }
+              term={searchParams.get("q") || ""}
+              offset={limit}
+              handlePagechange={(params) => handlePagechange(params)}
+              exportBookings={(params) =>
+                dispatch(exportCustomerBookingsRequest(customer, params))
+              }
+              customer={customer}
+            />
+          </Grid>
         </Grid>
       </Container>
       <Footer />

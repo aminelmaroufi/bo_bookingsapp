@@ -1,6 +1,5 @@
 import { takeLatest, all } from "redux-saga/effects";
-import axios, { AxiosResponse } from "axios";
-import nock from "nock";
+import { AxiosResponse } from "axios";
 import { push } from "@lagunovsky/redux-react-router";
 import recordSaga from "../recordSaga";
 import watchAuthRequest, {

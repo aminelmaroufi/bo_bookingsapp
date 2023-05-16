@@ -37,8 +37,6 @@ import { useDispatch } from "react-redux";
 import { IHotel } from "src/models";
 import { selectHotel } from "src/redux/actions";
 import { SearchTwoTone } from "@mui/icons-material";
-import { debounceTime } from "rxjs/operators";
-import { Subject } from "rxjs";
 
 interface HotelsTableProps {
   className?: string;
@@ -81,36 +79,26 @@ const HotelsTable: FC<HotelsTableProps> = ({
   const [firstRender, setFirstRender] = useState(true);
   const theme = useTheme();
 
-  let searchTerm = new Subject();
-
   const onChange = (value) => {
     setTerm(value);
   };
 
   useEffect(() => {
-    const subscription = searchTerm
-      .pipe(debounceTime(300))
-      .subscribe((term: string) => {
-        if ((!firstRender && term.length === 0) || term.length > 2) {
-          const params = {
-            q: term,
-            page: 1,
-          };
-          handlePagechange(params);
-        }
-      });
-    return () => {
-      subscription.unsubscribe();
-    };
+    if ((!firstRender && q.length === 0) || q.length > 2) {
+      const timeoutId = setTimeout(() => {
+        const params = {
+          q,
+          page: 1,
+        };
+        handlePagechange(params);
+      }, 500);
+      return () => clearTimeout(timeoutId);
+    }
   }, [q]);
 
   useEffect(() => {
     setFirstRender(false);
   }, [hotels]);
-
-  useEffect(() => {
-    searchTerm.next(q);
-  }, [q]);
 
   const handlePageChange = (event: any, newPage: number): void => {
     const params = {
@@ -144,189 +132,215 @@ const HotelsTable: FC<HotelsTableProps> = ({
           cy-data="hotels-search-box"
         />
       </Box>
-      <TableContainer data-testid="hotels-table">
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>Hotel Details</TableCell>
-              <TableCell>City</TableCell>
-              <TableCell>Country</TableCell>
-              <TableCell>Location</TableCell>
-              <TableCell>Type</TableCell>
-              <TableCell>Rating</TableCell>
-              <TableCell align="right">Number of rooms</TableCell>
-              <TableCell>Create at</TableCell>
-              <TableCell>Last update</TableCell>
-              <TableCell align="right">Actions</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {hotels.map((hotel) => {
-              return (
-                <TableRow
-                  hover
-                  key={hotel._id}
-                  onClick={() => select_hotel(hotel)}
-                >
-                  <TableCell>
-                    <Link to={`${hotel._id}/rooms`}>
-                      <Typography
-                        variant="body1"
-                        fontWeight="bold"
-                        color="text.primary"
-                        gutterBottom
-                        noWrap
-                      >
-                        {hotel.name}
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary" noWrap>
-                        {hotel.address}
-                      </Typography>
-                    </Link>
-                  </TableCell>
-                  <TableCell>
-                    <Typography
-                      variant="body1"
-                      fontWeight="bold"
-                      color="text.primary"
-                      gutterBottom
-                      noWrap
-                    >
-                      {hotel.city}
-                    </Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Typography
-                      variant="body1"
-                      fontWeight="bold"
-                      color="text.primary"
-                      gutterBottom
-                      noWrap
-                    >
-                      {hotel.country}
-                    </Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Typography
-                      variant="body1"
-                      fontWeight="bold"
-                      color="text.primary"
-                      gutterBottom
-                      noWrap
-                    >
-                      {hotel.location}
-                    </Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Typography
-                      variant="body1"
-                      fontWeight="bold"
-                      color="text.primary"
-                      gutterBottom
-                      noWrap
-                    >
-                      {hotel.type}
-                    </Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Rating name="read-only" value={hotel.rating} readOnly />
-                  </TableCell>
-                  <TableCell align="right">
-                    <Typography
-                      variant="body1"
-                      fontWeight="bold"
-                      color="text.primary"
-                      gutterBottom
-                      noWrap
-                    >
-                      {hotel.rooms.length}
-                    </Typography>
-                  </TableCell>
-                  <TableCell align="right">
-                    {Moment(hotel.created_at).format("ll")}
-                  </TableCell>
-                  <TableCell>{Moment(hotel.updated_at).format("ll")}</TableCell>
-                  <TableCell>
-                    <Tooltip title="Edit Hotel" arrow>
-                      <IconButton
-                        sx={{
-                          "&:hover": {
-                            background: theme.colors.primary.lighter,
-                          },
-                          color: theme.palette.primary.main,
-                        }}
-                        color="inherit"
-                        size="small"
-                        onClick={() => _selectHotel(hotel)}
-                      >
-                        <EditTwoToneIcon fontSize="small" />
-                      </IconButton>
-                    </Tooltip>
-                    <Tooltip title="Delete Hotel" arrow>
-                      <IconButton
-                        sx={{
-                          "&:hover": { background: theme.colors.error.lighter },
-                          color: theme.palette.error.main,
-                        }}
-                        color="inherit"
-                        size="small"
-                        onClick={() => openConfirmationDialog(hotel)}
-                      >
-                        <DeleteTwoToneIcon fontSize="small" />
-                      </IconButton>
-                    </Tooltip>
-                  </TableCell>
+      {hotels.length ? (
+        <Grid>
+          <TableContainer data-testid="hotels-table">
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Hotel Details</TableCell>
+                  <TableCell>City</TableCell>
+                  <TableCell>Country</TableCell>
+                  <TableCell>Location</TableCell>
+                  <TableCell>Type</TableCell>
+                  <TableCell>Rating</TableCell>
+                  <TableCell align="right">Number of rooms</TableCell>
+                  <TableCell>Create at</TableCell>
+                  <TableCell>Last update</TableCell>
+                  <TableCell align="right">Actions</TableCell>
                 </TableRow>
-              );
-            })}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <Grid
-        container
-        direction="row"
-        justifyContent="space-between"
-        alignItems="center"
-      >
-        <Grid
-          item
-          style={{
-            flex: 1,
-            padding: 10,
-          }}
-        >
-          <Button
-            cy-data="export-hotels-btn"
-            sx={{ mt: { xs: 2, md: 0 } }}
-            variant="contained"
-            startIcon={<DownloadTwoTone fontSize="small" />}
-            onClick={() => exportHotels({ q, activePage })}
+              </TableHead>
+              <TableBody>
+                {hotels.map((hotel) => {
+                  return (
+                    <TableRow
+                      hover
+                      key={hotel._id}
+                      onClick={() => select_hotel(hotel)}
+                    >
+                      <TableCell>
+                        <Link to={`${hotel._id}/rooms`}>
+                          <Typography
+                            variant="body1"
+                            fontWeight="bold"
+                            color="text.primary"
+                            gutterBottom
+                            noWrap
+                          >
+                            {hotel.name}
+                          </Typography>
+                          <Typography
+                            variant="body2"
+                            color="text.secondary"
+                            noWrap
+                          >
+                            {hotel.address}
+                          </Typography>
+                        </Link>
+                      </TableCell>
+                      <TableCell>
+                        <Typography
+                          variant="body1"
+                          fontWeight="bold"
+                          color="text.primary"
+                          gutterBottom
+                          noWrap
+                        >
+                          {hotel.city}
+                        </Typography>
+                      </TableCell>
+                      <TableCell>
+                        <Typography
+                          variant="body1"
+                          fontWeight="bold"
+                          color="text.primary"
+                          gutterBottom
+                          noWrap
+                        >
+                          {hotel.country}
+                        </Typography>
+                      </TableCell>
+                      <TableCell>
+                        <Typography
+                          variant="body1"
+                          fontWeight="bold"
+                          color="text.primary"
+                          gutterBottom
+                          noWrap
+                        >
+                          {hotel.location}
+                        </Typography>
+                      </TableCell>
+                      <TableCell>
+                        <Typography
+                          variant="body1"
+                          fontWeight="bold"
+                          color="text.primary"
+                          gutterBottom
+                          noWrap
+                        >
+                          {hotel.type}
+                        </Typography>
+                      </TableCell>
+                      <TableCell>
+                        <Rating
+                          name="read-only"
+                          value={hotel.rating}
+                          readOnly
+                        />
+                      </TableCell>
+                      <TableCell align="right">
+                        <Typography
+                          variant="body1"
+                          fontWeight="bold"
+                          color="text.primary"
+                          gutterBottom
+                          noWrap
+                        >
+                          {hotel.rooms.length}
+                        </Typography>
+                      </TableCell>
+                      <TableCell align="right">
+                        {Moment(hotel.created_at).format("ll")}
+                      </TableCell>
+                      <TableCell>
+                        {Moment(hotel.updated_at).format("ll")}
+                      </TableCell>
+                      <TableCell>
+                        <Tooltip title="Edit Hotel" arrow>
+                          <IconButton
+                            sx={{
+                              "&:hover": {
+                                background: theme.colors.primary.lighter,
+                              },
+                              color: theme.palette.primary.main,
+                            }}
+                            color="inherit"
+                            size="small"
+                            onClick={() => _selectHotel(hotel)}
+                          >
+                            <EditTwoToneIcon fontSize="small" />
+                          </IconButton>
+                        </Tooltip>
+                        <Tooltip title="Delete Hotel" arrow>
+                          <IconButton
+                            sx={{
+                              "&:hover": {
+                                background: theme.colors.error.lighter,
+                              },
+                              color: theme.palette.error.main,
+                            }}
+                            color="inherit"
+                            size="small"
+                            onClick={() => openConfirmationDialog(hotel)}
+                          >
+                            <DeleteTwoToneIcon fontSize="small" />
+                          </IconButton>
+                        </Tooltip>
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <Grid
+            container
+            direction="row"
+            justifyContent="space-between"
+            alignItems="center"
           >
-            Export hotels
-          </Button>
+            <Grid
+              item
+              style={{
+                flex: 1,
+                padding: 10,
+              }}
+            >
+              <Button
+                cy-data="export-hotels-btn"
+                sx={{ mt: { xs: 2, md: 0 } }}
+                variant="contained"
+                startIcon={<DownloadTwoTone fontSize="small" />}
+                onClick={() => exportHotels({ q, activePage })}
+              >
+                Export hotels
+              </Button>
+            </Grid>
+            <Grid
+              item
+              container
+              direction="row"
+              justifyContent="flex-end"
+              alignItems="flex-end"
+              spacing={3}
+              style={{
+                flex: 1,
+                marginTop: 5,
+              }}
+            >
+              <Pagination
+                count={pages}
+                page={activePage}
+                color="primary"
+                showFirstButton
+                showLastButton
+                onChange={handlePageChange}
+              />
+            </Grid>
+          </Grid>
         </Grid>
+      ) : (
         <Grid
-          item
           container
           direction="row"
-          justifyContent="flex-end"
-          alignItems="flex-end"
-          spacing={3}
-          style={{
-            flex: 1,
-            marginTop: 5,
-          }}
+          justifyContent="center"
+          alignItems="center"
+          style={{ marginTop: 30, padding: 10 }}
         >
-          <Pagination
-            count={pages}
-            page={activePage}
-            color="primary"
-            showFirstButton
-            showLastButton
-            onChange={handlePageChange}
-          />
+          <Typography variant="subtitle2">No hotels found</Typography>
         </Grid>
-      </Grid>
+      )}
     </Card>
   );
 };

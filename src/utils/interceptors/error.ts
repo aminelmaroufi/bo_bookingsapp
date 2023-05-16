@@ -9,7 +9,9 @@ const errorInterceptor = (store) => {
   adapter.interceptors.response.use(
     (response) => response,
     (error) => {
-      if (error.response && error.response.status === 401) {
+      if (!error.response) {
+        return browserHistory.push("/500");
+      } else if (error.response && error.response.status === 401) {
         const currPath = browserHistory.location.pathname;
 
         if (

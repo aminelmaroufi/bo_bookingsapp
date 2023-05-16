@@ -87,6 +87,7 @@
     "@types/react-toastify": "^4.1.0",
     "@types/recharts": "^1.8.23",
     "@types/redux-saga": "^0.10.5",
-    "cypress": "^12.3.0"
+    "cypress": "^12.3.0",
+    "jest-junit": "^16.0.0"
   }
 }

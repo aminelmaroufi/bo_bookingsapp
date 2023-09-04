@@ -1,21 +1,3 @@
-# image: node:latest
-
-# before_script:
-#   - apt-get update -qy
-#   - apt-get install -y ruby-dev
-#   - gem install dpl
-
-# stages:
-#   - production
-
-# production:
-#   stage: production
-#   image: ruby:latest
-#   script:
-#     - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
-#   only:
-#     - production
-
 default:
   image: node:latest
 
@@ -70,18 +52,16 @@ e2e_tests:
     - npm ci --prefer-offline
     - npm install -g serve
     - npm i -g wait-on
-    # - CI=false npm run build
-    # - npm start &
     - serve -s build &
     - wait-on http://localhost:3000
     - npm run e2e
-  # artifacts:
-  #   when: always
-  #   paths:
-  #     - test-results.xml
-  #     - cypress/screenshots
-  #   reports:
-  #     junit: test-results.xml
+  artifacts:
+    when: always
+    paths:
+      - test-results.xml
+      - cypress/screenshots
+    reports:
+      junit: test-results.xml
 deploy_production:
   stage: deploy
   only:

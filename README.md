@@ -11,7 +11,7 @@ $ npm install
 
 ## Running the app
 
-N.B: Don't forget to run the booking api before running the app, your can find the project [here][https://github.com/aminelmaroufi/bookingapp_api_nestjs]
+N.B: Don't forget to run the booking api before running the app, you can find the project [here](https://github.com/aminelmaroufi/bookingapp_api_nestjs)
 
 ```bash
 # development
@@ -28,7 +28,7 @@ $ npm run build
 $ npm run test
 ```
 ## E2E Test
-before running the e2e tests with Cypress, confire your environment by following this [link][https://docs.cypress.io/guides/component-testing/react/overview]
+before running the e2e tests with Cypress, confire your environment by following this [link](https://docs.cypress.io/guides/component-testing/react/overview)
 
 ```bash
 # headless
